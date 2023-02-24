@@ -19,5 +19,7 @@ The purpose of this project is to experiment with the basics of graphics program
 to plain memory access, like Mode 13 in DOS. The scope of this project is simple - be able to generate and render primitives within a window using purely 
 vector and matrix mathematics, and then output the resulting images to an image file such as BMP or PPM.
 
+### Changelog
 
+24.02.2023 - Changed window initialization method from GLFW/SDL2 to X11/Xlib. Window fills with blue. 
 
