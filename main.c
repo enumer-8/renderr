@@ -59,7 +59,6 @@ int main() {
     }
 
     XCloseDisplay(dpy);  // Closes the connection to the X server
-    return 0;  // Returns a success code
 
 
 	// TODO Set up the camera
@@ -71,6 +70,7 @@ int main() {
 	// TODO Clean up resources
 	
 	// TODO Close the window 
-	
+
+   return 0;    
 }
  
