@@ -62,15 +62,15 @@ int main() {
     return 0;  // Returns a success code
 
 
-	// Set up the camera
+	// TODO Set up the camera
 	
-	// Create 3D models
+	// TODO Create 3D models
 	
-	// Apply transformations and lighting
+	// TODO Apply transformations and lighting
 	
-	// Clean up resources
+	// TODO Clean up resources
 	
-	// Close the window 
+	// TODO Close the window 
 	
 }
  
