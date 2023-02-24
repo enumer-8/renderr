@@ -30,56 +30,47 @@ int main() {
 
 
 	// Initialize the rendering window
-           Display* dpy = XOpenDisplay(NULL);  // returns Display pointer to the display currently being used
+	
+	Display* dpy = XOpenDisplay(NULL);  // Opens a connection to the X server, returning a Display pointer to the display being used
 
-        if (!dpy) {
-                
-                return -1;
-        
+    if (!dpy) {  // Checks if the display was successfully opened
+        return -1;  // Returns an error code if the display could not be opened
+    }
+
+    int screen_num = DefaultScreen(dpy);  // Gets the default screen number of the display
+    Window root = RootWindow(dpy, screen_num);  // Gets the root window of the default screen
+
+    Window win = XCreateSimpleWindow(dpy, root, 0, 0, SCR_W, SCR_H, 255, 255, 255);  // Creates a simple window with the specified dimensions and properties
+
+    XSelectInput(dpy, win, ExposureMask | KeyPressMask);  // Selects the events to which the window should listen
+    XMapWindow(dpy, win);  // Maps the window to the screen
+
+    XEvent ev;  // Declares an XEvent variable to store incoming events
+    while (1) {  // Enters an infinite loop to wait for events
+
+        XNextEvent(dpy, &ev);  // Gets the next event from the queue
+        if (ev.type == Expose) {  // Checks if the event is an Expose event (the window needs to be redrawn)
+            
+		// TODO Drawing code goes here
+
+        } else if (ev.type == KeyPress) {  // Checks if the event is a KeyPress event
+            break;  // Breaks out of the event loop if a key is pressed
         }
+    }
+
+    XCloseDisplay(dpy);  // Closes the connection to the X server
+    return 0;  // Returns a success code
 
 
-
-
-        int screen_num = DefaultScreen(dpy); // 
-        Window root = RootWindow(dpy, screen_num);
-
-        Window win = XCreateSimpleWindow(dpy, root, 0,0,1920,1080,0,0,0);
-
-        XSelectInput(dpy, win, ExposureMask | KeyPressMask);
-        XMapWindow(dpy, win);
-
-        XEvent ev;
-        while (1) {
-
-                XNextEvent(dpy, &ev);
-                if (ev.type == Expose){
-
-                        // Draw here
-                } else if (ev.type == KeyPress) {
-
-                        break;
-                }
-
-        
-        }
-
-        XCloseDisplay(dpy);
-        return 0;
-
+	// Set up the camera
+	
+	// Create 3D models
+	
+	// Apply transformations and lighting
+	
+	// Clean up resources
+	
+	// Close the window 
+	
 }
  
-    // Set up the camera
-    
-    // Create 3D models
-    
-    // Apply transformations and lighting
-    
-    // Call the rendering loop function
-    
-    // Clean up resources
-    // Close the rendering window
-    
-    return 0;
-}
-
