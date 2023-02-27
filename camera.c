@@ -3,8 +3,12 @@
 #include "camera.h"
 #include "raymath.h"
 
-int main(void){
+Camera camera {
 
+	// TODO - define camera position and orientation
+	// TODO - calculate view matrix
+	// TODO - calculate projection matrix
+	// TODO - pass matrices to the vertex shader
+	// TODO - update the camera
 
-	return 0;
-}
+} camera; 
