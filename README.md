@@ -1,7 +1,7 @@
 # renderr
 
 Toy software renderer experiment using only standard headers, raymath.h and X11/Xlib. Updates may be sporadic as I work on this in my free time between
-other projects. Subject to sudden and dramatic changes as events warrant.
+other projects. Subject to sudden and dramatic changes as events warrant. Thanks to twitch.tv/drhonny for the thorough and educational code review. 
 
 ## Objectives
 
