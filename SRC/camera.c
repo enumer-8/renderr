@@ -20,7 +20,16 @@ void camera_destroy(Camera* camera)
 
 void camera_update_proj(Camera* camera, float fov, int SCR_W, int SCR_H)
 {
-    //TODO
+  float fov = 45.0f;
+  float asp_ratio = (float)SCR_W / (float)SCR_H;
+
+  float top = tan(fov * 0.5f * (PI / 180.0f));
+  float bottom = -top;
+  float right =  asp_ratio * top;
+  float left = -right;
+
+  float n_plane = 0.1f;
+  float f_plane = 100.0f;
 }
 
 void camera_pan(Camera* camera, Vector2 delta)
