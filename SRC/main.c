@@ -12,14 +12,27 @@
 
 //      COPYRIGHT enumer8 2023        //
 // ---------------------------------- //
-                                                                      
+
+// Standard headers + Xlib
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
 #include <X11/Xlib.h>
 
-/* preprocessor macros to initialize dimensions */
+// Raymath and custom headers
+#include "raymath.h"
+#include "camera.h"
+#include "obj.h"
+
+// preprocessor macros to initialize dimensions //
 #define SCR_W 800
 #define SCR_H 600
 
+// call obj file parser
 
+// -- goes here //
+
+// ====== MAIN LOOP =========================== //
 int main()
 {
 	// Initialize the rendering window
@@ -56,8 +69,8 @@ int main()
         // Checks if the event is an Expose event (the window needs to be redrawn)
         if (ev.type == Expose) 
         {  
-            
-		    // TODO Drawing code goes here
+
+	  
 
         } 
         else if (ev.type == KeyPress) // Checks if the event is a KeyPress event
@@ -68,17 +81,6 @@ int main()
 
     // Closes the connection to the X server
     XCloseDisplay(dpy);  
-
-
-	// TODO Set up the camera
-	
-	// TODO Create 3D models
-	
-	// TODO Apply transformations and lighting
-	
-	// TODO Clean up resources
-	
-	// TODO Close the window 
 
    return 0;    
 }
