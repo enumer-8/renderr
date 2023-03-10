@@ -10,34 +10,42 @@
 
 
 
-//      COPYRIGHT enumer8 2023        //
-// ---------------------------------- //
+/*      COPYRIGHT enumer8 2023        */
+/* ---------------------------------- */
 
 // Standard headers + Xlib
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <X11/Xlib.h>
+#include <stdio.h>      // file writing and general I/O
+#include <stdlib.h>     // memory allocation  
+#include <errno.h>      // errors 
+#include <string.h>     // string manipulation
+#include <X11/Xlib.h>   // drawing a window and other UI
+#include <stdbool.h>    // true/false checking
 
 // Raymath and custom headers
-#include "raymath.h"
-#include "camera.h"
-#include "obj.h"
+#include "raymath.h"    // math functions
+#include "camera.h"     // custom camera implementation
+#include "obj.h"        // defined 3D primitives
 
-// preprocessor macros to initialize dimensions //
+// initialize dimensions 
 #define SCR_W 800
 #define SCR_H 600
 
-// call obj file parser
+// define what file path is to save resulting image - IN PROGRESS
+const char *path_to_file = "output.bmp";
+int width  = SCR_W;
+int height = SCR_H;
 
-// -- goes here //
+// file write function goes here
 
+int save_bitmap_output();
+
+		       
 // ====== MAIN LOOP =========================== //
 int main()
 {
-	// Initialize the rendering window
-	// Opens a connection to the X server, returns a Display pointer to the display being used
-	Display* dpy = XOpenDisplay(NULL);  
+    // Initialize the rendering window
+    // Opens a connection to the X server, returns a Display pointer to the display being used
+    Display* dpy = XOpenDisplay(NULL);  
 
     // Checks if the display was successfully opened
     // Returns an error code if the display could not be opened
@@ -69,8 +77,8 @@ int main()
         // Checks if the event is an Expose event (the window needs to be redrawn)
         if (ev.type == Expose) 
         {  
-
-	  
+          
+          // real-time rendering of objects goes HERE 	  
 
         } 
         else if (ev.type == KeyPress) // Checks if the event is a KeyPress event
