@@ -1,36 +1,62 @@
-#include "camera.h"
 #include <stdlib.h>
+#include <errno.h>
+#include "camera.h"
 
-Camera* camera_create(Vector3 pos, Vector3 target, Vector3 up, float fov, int SCR_W, int SCR_H)
-{
-	Camera* camera = malloc(sizeof(Camera));
-	camera->pos = pos;
-	camera->target = target;
-	camera->up = up;
-	camera->proj = MatrixPerspective(fov * DEG2RAD, (float)SCR_W/ (float)SCR_H, 0.1f, 100.0f);
-	camera->view = MatrixLookAt(camera->pos, camera->target, camera->up);
+// function that initializes camera
+Camera* camera_create(Vector3 pos, Vector3 target, Vector3 up, float fov, int SCR_W, int SCR_H){
 
-    return camera;
+  Camera* camera = malloc(sizeof(Camera));     // allocate a memory region of size Camera
+  if(camera  == NULL){                        // error handling
+    if (errno == ENOMEM){
+      printf("Error: failed to allocate memory.\n");
+          }
+    return -1;
+	}
+ 
+camera->pos = pos;
+camera->target = target;
+camera->up = up;
+camera->proj = MatrixPerspective(fov * DEG2RAD, (float)SCR_W/ (float)SCR_H, N_PLANE, F_PLANE);
+camera->view = MatrixLookAt(camera->pos, camera->target, camera->up);
+camera->N_PLANE = N_PLANE;
+camera->F_PLANE = F_PLANE;
+
+ return camera;
 }	
 
+// function that frees camera memory
 void camera_destroy(Camera* camera) 
 {
 	free(camera);
 }
 
-void camera_update_proj(Camera* camera, float fov, int SCR_W, int SCR_H)
+// function to update the projection matrix
+void camera_update_proj(Camera* camera, float fov, int SCR_W, int SCR_H, N_PLANE, F_PLANE)
 {
-  float fov = 45.0f;
-  float asp_ratio = (float)SCR_W / (float)SCR_H;
+  camera->proj = (Matrix){0};                        // initialize matrix to 0
+  
+  float asp_ratio = (float)SCR_W / (float)SCR_H;     // setting aspect ratio -> divide screen width by height
 
-  float top = tan(fov * 0.5f * (PI / 180.0f));
-  float bottom = -top;
-  float right =  asp_ratio * top;
-  float left = -right;
+  float top      = tan(fov * 0.5 * DEG2RAD);         // vertical field of view
+  float bottom   = -top;
+  float right    = top * aspect;
+  float left     = -right; 
 
-  float n_plane = 0.1f;
-  float f_plane = 100.0f;
-}
+  // MatrixFrustum
+  float rl       = (float)(right - left);
+  float tb       = (float)(top - bottom);
+  float fn       = (float)(far - near);
+
+  result.m0      = ((float)N_PLANE * 2.0f) / rl;          // scaling factor for x dimension of frustum
+  result.m5      = ((float)N_PLANE * 2.0f) / tb;          // scaling factor for y dimension of frustum
+  result.m8      = ((float)right + (float)left)/rl;       // translation factor for x dimension
+  result.m9      = ((float)top + (float)bottom/tb;        // translation factor for y dimension
+  result.m10     = -((float)F_PLANE + (float)N_PLANE)/fn; // scaling factor for z dimension      
+  result.m11     = -1.0f;                                 // scaling factor for 'w' homogenous coordinate
+  result.m14     = =((float)F_PLANE * (float)N_PLANE      // translation factor for z dimension of frustum
+
+  return result;
+}		     
 
 void camera_pan(Camera* camera, Vector2 delta)
 {
