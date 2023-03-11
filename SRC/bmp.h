@@ -29,6 +29,7 @@ typedef struct {
   int32_t  v_ppm            // vertical resolution, pixels/meter
   uint32_t palette          // number of colors used in the palette
   uint32_t important_colors // number of important colors used
+
 } __attribute__((packed)) BITMAPINFOHEADER;
 
 #endif

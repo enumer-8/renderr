@@ -25,6 +25,7 @@
 #include "raymath.h"    // math functions
 #include "camera.h"     // custom camera implementation
 #include "obj.h"        // defined 3D primitives
+#include "bmp.h"        // bitmap structures
 
 // initialize dimensions 
 #define SCR_W 800
