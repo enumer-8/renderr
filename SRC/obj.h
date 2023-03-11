@@ -3,27 +3,31 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include "ray math.h"
+#include "raymath.h"
+
+typedef struct Line {
+
+  Vector2 x;
+  Vector2 y;
+  unsigned char color;
+
+} Line;
 
 typedef struct Tri {
 
-	Vector3 v1;
-	Vector3 v2;
-	Vector3 v3;
+  Vector3 v1;
+  Vector3 v2;
+  Vector3 v3;
 
 } Tri;
 
 typedef struct Quad {
 
-	Vector4 v1;
-	Vector4 v2;
-	Vector4 v3;
-	Vector4 v4;
+  Vector4 v1;
+  Vector4 v2;
+  Vector4 v3;
+  Vector4 v4;
 
 } Quad; 
-
-
-extern Quad rect;
-extern Tri tri;
 
 #endif
