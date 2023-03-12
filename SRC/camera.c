@@ -50,13 +50,13 @@ void camera_update_proj(Camera* camera, float fov, int SCR_W, int SCR_H, N_PLANE
   float tb       = (float)(top - bottom);
   float fn       = (float)(far - near);
 
-  result.m0      = ((float)N_PLANE * 2.0f) / rl;          // scaling factor for x dimension of frustum
-  result.m5      = ((float)N_PLANE * 2.0f) / tb;          // scaling factor for y dimension of frustum
-  result.m8      = ((float)right + (float)left)/rl;       // translation factor for x dimension
-  result.m9      = ((float)top + (float)bottom/tb;        // translation factor for y dimension
-  result.m10     = -((float)F_PLANE + (float)N_PLANE)/fn; // scaling factor for z dimension      
-  result.m11     = -1.0f;                                 // scaling factor for 'w' homogenous coordinate
-  result.m14     = ((float)F_PLANE * (float)N_PLANE       // translation factor for z dimension of frustum
+  camera->proj.m0      = ((float)N_PLANE * 2.0f) / rl;          // scaling factor for x dimension of frustum
+  camera->proj.m5      = ((float)N_PLANE * 2.0f) / tb;          // scaling factor for y dimension of frustum
+  camera->proj.m8      = ((float)right + (float)left)/rl;       // translation factor for x dimension
+  camera->proj.m9      = ((float)top + (float)bottom/tb;        // translation factor for y dimension
+  camera->proj.m10     = -((float)F_PLANE + (float)N_PLANE)/fn; // scaling factor for z dimension      
+  camera->proj.m11     = -1.0f;                                 // scaling factor for 'w' homogenous coordinate
+  camera->proj.m14     = ((float)F_PLANE * (float)N_PLANE       // translation factor for z dimension of frustum
 
   return camera->proj;
 }		     
