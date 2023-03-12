@@ -63,21 +63,19 @@ void camera_update_proj(Camera* camera, float fov, int SCR_W, int SCR_H, N_PLANE
 
 void camera_pan(Camera* camera, Vector2 delta)
 {
-  Vector3 forward = (Vector3){camera->target.x -
-                              camera->pos.x,
-                              camera->target.y,
-			      camera->pos.y,
-			      camera->target.z,
-			      camera->pos.z};
+  Vector3 forward = (Vector3){
+                     camera->target.x - camera->pos.x,
+                     camera->target.y - camera->pos.y,
+		     camera->target.z - camera->pos.z
+                     };
 
   forward = Vector3Normalize(forward);
 
-  Vector3 right = Vector3CrossProduct(forward,
-				     (Vector3)
+  Vector3 right = Vector3CrossProduct(forward, (Vector3)
 				     {0.0f, 1.0f, 0.0f});
   right = Vector3Normalize(right);
 
-  Vector3 up = (right, forward);
+  Vector3 up = Vector3CrossProduct(right, forward);
   up = Vector3Normalize(up);
 
   camera->pos.x += right.x * delta.x + up.x * delta.y;
