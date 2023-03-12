@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <errno.h>
+#include <math.h>
 #include "camera.h"
+#include "raymath.h"
+
 
 // function that initializes camera
 Camera* camera_create(Vector3 pos, Vector3 target, Vector3 up, float fov, int SCR_W, int SCR_H){
@@ -55,13 +58,37 @@ void camera_update_proj(Camera* camera, float fov, int SCR_W, int SCR_H, N_PLANE
   result.m11     = -1.0f;                                 // scaling factor for 'w' homogenous coordinate
   result.m14     = =((float)F_PLANE * (float)N_PLANE      // translation factor for z dimension of frustum
 
-  return result;
+  return camera->proj;
 }		     
 
 void camera_pan(Camera* camera, Vector2 delta)
 {
-    //TODO
+  Vector3 forward = (Vector3){camera->target.x -
+                              camera->pos.x,
+                              camera->target.y,
+			      camera->pos.y,
+			      camera->target.z,
+			      camera->pos.z};
+
+  forward = Vector3Normalize(forward);
+
+  Vector3 right = Vector3CrossProduct(forward,
+				     (Vector3)
+				     {0.0f, 1.0f, 0.0f});
+  right = Vector3Normalize(right);
+
+  Vector3 up = (right, forward);
+  up = Vector3Normalize(up);
+
+  camera->pos.x += right.x * delta.x + up.x * delta.y;
+  camera->pos.y += right.y * delta.x + up.y * delta.y;
+  camera->pos.z += right.z * delta.x + up.z * delta.y;
+
+  camera->target.x = camera->pos.x + forward.x;
+  camera->target.y = camera->pos.y + forward.y;
+  camera->target.z = camera->pos.z + forward.z;
 }
+		   
 
 void camera_rotate(Camera* camera, Vector2 delta)
 {
