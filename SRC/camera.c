@@ -8,13 +8,14 @@
 // function that initializes camera
 Camera* camera_create(Vector3 pos, Vector3 target, Vector3 up, float fov, int SCR_W, int SCR_H){
 
-  Camera* camera = malloc(sizeof(Camera));     // allocate a memory region of size Camera
-  if(camera  == NULL){                        // error handling
-    if (errno == ENOMEM){
-      printf("Error: failed to allocate memory.\n");
-          }
-    return -1;
-	}
+  Camera* camera = CameraAlloc(1, sizeof(Camera));      // using calloc instead of malloc to init 0 memory
+
+  if (camera == NULL){                                  // if memory for the camera cannot be allocated
+      printf("Error: memory allocation failure.\n");
+      exit (-1);                                        // will exit the program w/out caller handling error
+      return camera;
+    }
+   
  
 camera->pos = pos;
 camera->target = target;
@@ -61,6 +62,7 @@ void camera_update_proj(Camera* camera, float fov, int SCR_W, int SCR_H, N_PLANE
   return camera->proj;
 }		     
 
+// function to pan the camera
 void camera_pan(Camera* camera, Vector2 delta)
 {
   Vector3 forward = (Vector3){
@@ -88,16 +90,17 @@ void camera_pan(Camera* camera, Vector2 delta)
 }
 		   
 
+// function to rotate the camera
 void camera_rotate(Camera* camera, Vector2 delta)
 {
     //TODO
 }
-
+// function to zoom the camera
 void camera_zoom(Camera* camera, float delta)
 {
     //TODO
 }
-
+// function to update the camera view
 void camera_update_view(Camera* camera, Vector3 pos, Vector3 target, Vector3 up) 
 {
     camera->view = MatrixLookAt(pos, target, up);
