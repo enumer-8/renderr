@@ -9,7 +9,7 @@ typedef struct Line {
 
   Vector2 x;
   Vector2 y;
-  unsigned char color;
+  uint32_t color;
 
 } Line;
 
