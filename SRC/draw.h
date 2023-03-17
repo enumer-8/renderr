@@ -4,8 +4,8 @@
 #include "obj.h"
 #include "bmp.h"
 
-void draw_line(Line* line);
-void draw_tri(Tri* tri);
-void draw_quad(Quad* quad);
+void draw_line(Display* dpy, Window win, GC gc, Line* line);
+void draw_tri(Display* dpy, Window win, GC gc, Tri* tri);
+void draw_quad(Display* dpy, Window win, GC gc, Quad* quad);
 
 #endif 
