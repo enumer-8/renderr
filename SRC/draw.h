@@ -2,6 +2,7 @@
 #define DRAW_H
 
 #include "obj.h"
+#include <X11/Xlib.h>
 
 
 void draw_line(Display* dpy, Window win, GC gc, Line* line);
