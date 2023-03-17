@@ -21,5 +21,7 @@ vector and matrix mathematics, and then output the resulting images to an image 
 
 ### Changelog
 
+17.03.2023 - Created line drawing functions via draw header and source files. When main is compiled, lines can now be drawn.
+
 24.02.2023 - Changed window initialization method from GLFW/SDL2 to X11/Xlib. Window fills with blue. 
 
