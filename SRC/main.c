@@ -88,9 +88,9 @@ int main()
 	  
           // Line drawing test
           Line line;
-          line->p1 = (Vector2) {10,10};
-          line->p2 = (Vector2) {100, 100};
-          line->color = 0xFF0000;
+          line.p1 = (Vector2) {10,10};
+          line.p2 = (Vector2) {100, 100};
+          line.color = 0xFF0000;
 
           draw_line(dpy, win, gc, &line);
      	  

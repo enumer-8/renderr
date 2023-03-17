@@ -7,8 +7,8 @@
 
 typedef struct Line {
 
-  Vector2 x;
-  Vector2 y;
+  Vector2 p1;
+  Vector2 p2;
   uint32_t color;
 
 } Line;
