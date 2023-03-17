@@ -2,7 +2,7 @@
 #define DRAW_H
 
 #include "obj.h"
-#include "bmp.h"
+
 
 void draw_line(Display* dpy, Window win, GC gc, Line* line);
 void draw_tri(Display* dpy, Window win, GC gc, Tri* tri);
